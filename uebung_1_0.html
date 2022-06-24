@@ -37,7 +37,20 @@
     var container = document.querySelector('#container');
 
     function getGif() {
-        // Dein Code hier
+        fetch('https://api.giphy.com/v1/gifs/random?api_key=vteZ9Q3wIUEvN7heLsE7bazziLfqxerV&limit=1&tag=kitten')
+        .then(response => response.json())
+        .then(json => {
+            let container = document.querySelector('#container');
+            container.innerHTML = '';
+
+            let figure = document.createElement('figure');
+            figure.innerHTML = `
+            <img src="${json.data.images.original.url}" width="${json.data.images.original.width} height="${json.data.images.original.height}">
+            <figcaption>${json.data.title}</figcaption>
+            `;
+
+            container.appendChild(figure);
+        });
     }
 
 </script>
